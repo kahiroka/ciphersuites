@@ -8,7 +8,7 @@ This is a complementary tool to Wireshark for decoding cipher suites of packet d
     $ python3 ciphersuites.py
     usage: python3 ciphersuites.py packet.bin
 
-    $ python3 ciphersuites.py ftps-client-hello.bin 
+    $ python3 ciphersuites.py -b ftps-client-hello.bin 
     ['0xC0', '0x2C'] TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 ['TLS1.2'] Recommended
     ['0xC0', '0x30'] TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 ['TLS1.2'] Recommended
     ['0x00', '0x9F'] TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 ['TLS1.2'] Recommended
