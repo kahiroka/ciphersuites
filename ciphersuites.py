@@ -48,6 +48,14 @@ class CipherSuites:
                 self.f.seek(offset, 0)
         self.offset = candidate_offset
 
+    def __printCipherSuites(self, cs):
+        print(cs['code'], end=" ")
+        print(cs['name'], end=" ")
+        print(cs['version'], end=" ")
+        if "rfc" in cs:
+            print(cs['rfc'], end=" ")
+        print(cs['status'], end="\n")
+
     def __printCipherSuitesBinary(self):
         self.f.seek(self.offset, 0)
         num = int.from_bytes(self.f.read(1), byteorder='big')
@@ -57,10 +65,7 @@ class CipherSuites:
             cs = self.__getCipherSuite(code_h, code_l)
             if self.insecure == True and cs['status'] != "Insecure":
                 continue
-            print(cs['code'], end=" ")
-            print(cs['name']+" ", end="")
-            print(cs['version'], end=" ")
-            print(cs['status'], end="\n")
+            self.__printCipherSuites(cs)
 
     def __printCipherSuitesText(self):
         for line in self.f.readlines():
@@ -69,10 +74,7 @@ class CipherSuites:
                 if m != None and m.group() == cs["name"]:
                     if self.insecure == True and cs['status'] != "Insecure":
                         continue
-                    print(cs['code'], end=" ")
-                    print(cs['name']+" ", end="")
-                    print(cs['version'], end=" ")
-                    print(cs['status'], end="\n")
+                    self.__printCipherSuites(cs)
 
     def printCipherSuites(self):
         if self.binary:
